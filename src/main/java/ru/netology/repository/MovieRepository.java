@@ -4,15 +4,7 @@ import ru.netology.domain.Movie;
 
 public class MovieRepository {
 
-    private Movie[] movies = {
-            new Movie(1, "Форсаж 1", "Боевик"),
-            new Movie(2, "Форсаж 2", "Боевик"),
-            new Movie(3, "Форсаж 3", "Боевик"),
-            new Movie(4, "Форсаж 4", "Боевик"),
-            new Movie(5, "Форсаж 5", "Боевик"),
-            new Movie(6, "Форсаж 6", "Боевик"),
-            new Movie(7, "Форсаж 7", "Боевик")
-    };
+    private Movie[] movies = new Movie[0];
 
     public void save(Movie movie) {
         int length = movies.length + 1;

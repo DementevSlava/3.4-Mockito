@@ -1,10 +1,15 @@
 package ru.netology.manager;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
 import ru.netology.repository.MovieRepository;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class MovieManager {
-    private MovieRepository movieRepository;
+    private MovieRepository movieRepository = new MovieRepository();
+    private int itemsToReturn = 10;
 
     public MovieManager(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -55,5 +60,9 @@ public class MovieManager {
         Movie[] tmp = new Movie[maxLenght];
         System.arraycopy(result, 0, tmp, 0, tmp.length);
         return tmp;
+    }
+
+    public void removeById (int id){
+        movieRepository.removeById(id);
     }
 }
