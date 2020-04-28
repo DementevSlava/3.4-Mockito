@@ -2,11 +2,13 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movie;
+import ru.netology.repository.MovieRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MovieManagerTest {
-    private MovieManager movieManager = new MovieManager();
+    private MovieRepository movieRepository = new MovieRepository();
+    private MovieManager movieManager = new MovieManager(movieRepository);
     private Movie movieToAdd = new Movie(20, "Форсаж 20", "Боевик");
     private Movie movie8 = new Movie(8, "Форсаж 8", "Боевик");
     private Movie movie9 = new Movie(9, "Форсаж 9", "Боевик");
@@ -18,7 +20,7 @@ public class MovieManagerTest {
     @Test
     public void ShowSmall() {
 
-        movieManager.add(movieToAdd);
+        movieRepository.save(movieToAdd);
         Movie[] actual = movieManager.showMovie();
         Movie[] expected = {
                 new Movie(20, "Форсаж 20", "Боевик"),

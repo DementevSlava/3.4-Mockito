@@ -1,28 +1,21 @@
 package ru.netology.manager;
 
 import ru.netology.domain.Movie;
+import ru.netology.repository.MovieRepository;
 
 public class MovieManager {
-    private Movie[] movies = {
-            new Movie(1, "Форсаж 1", "Боевик"),
-            new Movie(2, "Форсаж 2", "Боевик"),
-            new Movie(3, "Форсаж 3", "Боевик"),
-            new Movie(4, "Форсаж 4", "Боевик"),
-            new Movie(5, "Форсаж 5", "Боевик"),
-            new Movie(6, "Форсаж 6", "Боевик"),
-            new Movie(7, "Форсаж 7", "Боевик")
-    };
+    private MovieRepository movieRepository;
 
-    public void add(Movie item) {
-        int length = movies.length + 1;
-        Movie[] tmp = new Movie[length];
-        System.arraycopy(movies, 0, tmp, 0, movies.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        movies = tmp;
+    public MovieManager(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
+
+    public void add(Movie movie) {
+        movieRepository.save(movie);
     }
 
     public Movie[] flipList() {
+        Movie[] movies = movieRepository.findAll();
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = movies.length - i - 1;
@@ -32,6 +25,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie(int howManyFilmToShow) {
+        Movie[] movies = movieRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
@@ -51,6 +45,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie() {
+        Movie[] movies = movieRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
