@@ -7,17 +7,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movie;
-import ru.netology.repository.MovieRepository;
+import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class MovieManagerTestWithMockito {
+class AfishaManagerTestWithMockito {
     @Mock
-    private MovieRepository movieRepository;
+    private AfishaRepository afishaRepository;
     @InjectMocks
-    private MovieManager movieManager;
+    private AfishaManager afishaManager;
     private Movie movie1 = new Movie(1, "Форсаж 1", "Боевик");
     private Movie movie2 = new Movie(2, "Форсаж 2", "Боевик");
     private Movie movie3 = new Movie(3, "Форсаж 3", "Боевик");
@@ -29,21 +29,21 @@ class MovieManagerTestWithMockito {
 
     @BeforeEach
     public void setUp() {
-        movieManager.add(movie1);
-        movieManager.add(movie2);
-        movieManager.add(movie3);
-        movieManager.add(movie4);
-        movieManager.add(movie5);
-        movieManager.add(movie6);
-        movieManager.add(movie7);
+        afishaManager.add(movie1);
+        afishaManager.add(movie2);
+        afishaManager.add(movie3);
+        afishaManager.add(movie4);
+        afishaManager.add(movie5);
+        afishaManager.add(movie6);
+        afishaManager.add(movie7);
     }
 
     @Test
     public void flipList() {
         Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4, movie5, movie6, movie7};
-        doReturn(returned).when(movieRepository).findAll();
+        doReturn(returned).when(afishaRepository).findAll();
 
-        Movie[] actual = movieManager.flipList();
+        Movie[] actual = afishaManager.flipList();
         Movie[] expected = {movie7, movie6, movie5, movie4, movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
     }
@@ -52,16 +52,16 @@ class MovieManagerTestWithMockito {
     public void removeById() {
         int idToRemove = 2;
         Movie[] returned = new Movie[]{movie1, movie3, movie4, movie5, movie6, movie7};
-        doReturn(returned).when(movieRepository).findAll();
+        doReturn(returned).when(afishaRepository).findAll();
 
-        movieManager.removeById(idToRemove);
-        Movie[] actual = movieManager.flipList();
+        afishaManager.removeById(idToRemove);
+        Movie[] actual = afishaManager.flipList();
         Movie[] expected = new Movie[]{movie7, movie6, movie5, movie4, movie3, movie1};
 
 
         assertArrayEquals(expected, actual);
 
-        verify(movieRepository).removeById(idToRemove);
+        verify(afishaRepository).removeById(idToRemove);
     }
 
 }

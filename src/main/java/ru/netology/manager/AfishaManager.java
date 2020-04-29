@@ -3,24 +3,24 @@ package ru.netology.manager;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
-import ru.netology.repository.MovieRepository;
+import ru.netology.repository.AfishaRepository;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovieManager {
-    private MovieRepository movieRepository = new MovieRepository();
+public class AfishaManager {
+    private AfishaRepository afishaRepository = new AfishaRepository();
     private int itemsToReturn = 10;
 
-    public MovieManager(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public AfishaManager(AfishaRepository afishaRepository) {
+        this.afishaRepository = afishaRepository;
     }
 
     public void add(Movie movie) {
-        movieRepository.save(movie);
+        afishaRepository.save(movie);
     }
 
     public Movie[] flipList() {
-        Movie[] movies = movieRepository.findAll();
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = movies.length - i - 1;
@@ -30,7 +30,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie(int howManyFilmToShow) {
-        Movie[] movies = movieRepository.findAll();
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
@@ -50,7 +50,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie() {
-        Movie[] movies = movieRepository.findAll();
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
@@ -63,6 +63,6 @@ public class MovieManager {
     }
 
     public void removeById (int id){
-        movieRepository.removeById(id);
+        afishaRepository.removeById(id);
     }
 }

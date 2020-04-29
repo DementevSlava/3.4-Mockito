@@ -6,8 +6,8 @@ import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovieRepositoryTest {
-    private MovieRepository movieRepository = new MovieRepository();
+class AfishaRepositoryTest {
+    private AfishaRepository afishaRepository = new AfishaRepository();
     private Movie movieToAdd = new Movie(20, "Форсаж 20", "Боевик");
     private Movie movie1 = new Movie(1, "Форсаж 1", "Боевик");
     private Movie movie2 = new Movie(2, "Форсаж 2", "Боевик");
@@ -25,19 +25,19 @@ class MovieRepositoryTest {
 
     @BeforeEach
     public void setUp(){
-        movieRepository.save(movie1);
-        movieRepository.save(movie2);
-        movieRepository.save(movie3);
-        movieRepository.save(movie4);
-        movieRepository.save(movie5);
-        movieRepository.save(movie6);
-        movieRepository.save(movie7);
+        afishaRepository.save(movie1);
+        afishaRepository.save(movie2);
+        afishaRepository.save(movie3);
+        afishaRepository.save(movie4);
+        afishaRepository.save(movie5);
+        afishaRepository.save(movie6);
+        afishaRepository.save(movie7);
     }
 
     @Test
     void save() {
-        movieRepository.save(movieToAdd);
-        Movie[] actual = movieRepository.findAll();
+        afishaRepository.save(movieToAdd);
+        Movie[] actual = afishaRepository.findAll();
         Movie[] expected = {
                 new Movie(1, "Форсаж 1", "Боевик"),
                 new Movie(2, "Форсаж 2", "Боевик"),
@@ -53,7 +53,7 @@ class MovieRepositoryTest {
 
     @Test
     void findAll() {
-        Movie[] actual = movieRepository.findAll();
+        Movie[] actual = afishaRepository.findAll();
         Movie[] expected = {
                 new Movie(1, "Форсаж 1", "Боевик"),
                 new Movie(2, "Форсаж 2", "Боевик"),
@@ -68,8 +68,8 @@ class MovieRepositoryTest {
 
     @Test
     void removeById() {
-        movieRepository.removeById(3);
-        Movie[] actual = movieRepository.findAll();
+        afishaRepository.removeById(3);
+        Movie[] actual = afishaRepository.findAll();
         Movie[] expected = {
                 new Movie(1, "Форсаж 1", "Боевик"),
                 new Movie(2, "Форсаж 2", "Боевик"),
@@ -83,23 +83,23 @@ class MovieRepositoryTest {
 
     @Test
     void findById() {
-        movieRepository.save(movieToAdd);
-        Movie actual = movieRepository.findById(6);
+        afishaRepository.save(movieToAdd);
+        Movie actual = afishaRepository.findById(6);
         Movie expected = new Movie(6, "Форсаж 6", "Боевик");
         assertEquals(expected, actual);
     }
 
     @Test
     void findByNonId() {
-        movieRepository.save(movieToAdd);
-        Movie actual = movieRepository.findById(100);
+        afishaRepository.save(movieToAdd);
+        Movie actual = afishaRepository.findById(100);
         assertEquals(null, actual);
     }
 
     @Test
     void removeAll() {
-        movieRepository.removeAll();
-        Movie[] actual = movieRepository.findAll();
+        afishaRepository.removeAll();
+        Movie[] actual = afishaRepository.findAll();
         Movie[] expected = {};
         assertArrayEquals(expected, actual);
     }

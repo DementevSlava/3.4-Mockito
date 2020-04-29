@@ -2,7 +2,7 @@ package ru.netology.repository;
 
 import ru.netology.domain.Movie;
 
-public class MovieRepository {
+public class AfishaRepository {
 
     private Movie[] movies = new Movie[0];
 

@@ -3,13 +3,13 @@ package ru.netology.manager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movie;
-import ru.netology.repository.MovieRepository;
+import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class MovieManagerTest {
-    private MovieRepository movieRepository = new MovieRepository();
-    private MovieManager movieManager = new MovieManager(movieRepository);
+public class AfishaManagerTest {
+    private AfishaRepository afishaRepository = new AfishaRepository();
+    private AfishaManager afishaManager = new AfishaManager(afishaRepository);
     private Movie movieToAdd = new Movie(20, "Форсаж 20", "Боевик");
     private Movie movie1 = new Movie(1, "Форсаж 1", "Боевик");
     private Movie movie2 = new Movie(2, "Форсаж 2", "Боевик");
@@ -28,19 +28,19 @@ public class MovieManagerTest {
 
     @BeforeEach
     public void setUp(){
-        movieRepository.save(movie1);
-        movieRepository.save(movie2);
-        movieRepository.save(movie3);
-        movieRepository.save(movie4);
-        movieRepository.save(movie5);
-        movieRepository.save(movie6);
-        movieRepository.save(movie7);
+        afishaRepository.save(movie1);
+        afishaRepository.save(movie2);
+        afishaRepository.save(movie3);
+        afishaRepository.save(movie4);
+        afishaRepository.save(movie5);
+        afishaRepository.save(movie6);
+        afishaRepository.save(movie7);
     }
 
     @Test
     public void ShowSmall() {
-        movieRepository.save(movieToAdd);
-        Movie[] actual = movieManager.showMovie();
+        afishaRepository.save(movieToAdd);
+        Movie[] actual = afishaManager.showMovie();
         Movie[] expected = {
                 new Movie(20, "Форсаж 20", "Боевик"),
                 new Movie(7, "Форсаж 7", "Боевик"),
@@ -56,14 +56,14 @@ public class MovieManagerTest {
 
     @Test
     public void showDefault() {
-        movieManager.add(movie8);
-        movieManager.add(movie9);
-        movieManager.add(movie10);
-        movieManager.add(movie11);
-        movieManager.add(movie12);
-        movieManager.add(movie13);
-        movieManager.add(movieToAdd);
-        Movie[] actual = movieManager.showMovie();
+        afishaManager.add(movie8);
+        afishaManager.add(movie9);
+        afishaManager.add(movie10);
+        afishaManager.add(movie11);
+        afishaManager.add(movie12);
+        afishaManager.add(movie13);
+        afishaManager.add(movieToAdd);
+        Movie[] actual = afishaManager.showMovie();
         Movie[] expected = {
                 new Movie(20, "Форсаж 20", "Боевик"),
                 new Movie(13, "Форсаж 13", "Боевик"),
@@ -85,8 +85,8 @@ public class MovieManagerTest {
 
     @Test
     public void showSetMovie() {
-        movieManager.add(movieToAdd);
-        Movie[] actual = movieManager.showMovie(5);
+        afishaManager.add(movieToAdd);
+        Movie[] actual = afishaManager.showMovie(5);
         Movie[] expected = {
                 new Movie(20, "Форсаж 20", "Боевик"),
                 new Movie(7, "Форсаж 7", "Боевик"),
@@ -99,14 +99,14 @@ public class MovieManagerTest {
 
     @Test
     public void setOverDefaultMovie() {
-        movieManager.add(movie8);
-        movieManager.add(movie9);
-        movieManager.add(movie10);
-        movieManager.add(movie11);
-        movieManager.add(movie12);
-        movieManager.add(movie13);
-        movieManager.add(movieToAdd);
-        Movie[] actual = movieManager.showMovie(12);
+        afishaManager.add(movie8);
+        afishaManager.add(movie9);
+        afishaManager.add(movie10);
+        afishaManager.add(movie11);
+        afishaManager.add(movie12);
+        afishaManager.add(movie13);
+        afishaManager.add(movieToAdd);
+        Movie[] actual = afishaManager.showMovie(12);
         Movie[] expected = {
                 new Movie(20, "Форсаж 20", "Боевик"),
                 new Movie(13, "Форсаж 13", "Боевик"),
@@ -124,8 +124,8 @@ public class MovieManagerTest {
 
     @Test
     public void removeById (){
-        movieManager.removeById(3);
-        Movie[] actual = movieManager.showMovie();
+        afishaManager.removeById(3);
+        Movie[] actual = afishaManager.showMovie();
         Movie[] expected = {
                 new Movie(7, "Форсаж 7", "Боевик"),
                 new Movie(6, "Форсаж 6", "Боевик"),
