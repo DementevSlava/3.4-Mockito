@@ -1,28 +1,26 @@
 package ru.netology.manager;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
+import ru.netology.repository.AfishaRepository;
 
-public class MovieManager {
-    private Movie[] movies = {
-            new Movie(1, "Форсаж 1", "Боевик"),
-            new Movie(2, "Форсаж 2", "Боевик"),
-            new Movie(3, "Форсаж 3", "Боевик"),
-            new Movie(4, "Форсаж 4", "Боевик"),
-            new Movie(5, "Форсаж 5", "Боевик"),
-            new Movie(6, "Форсаж 6", "Боевик"),
-            new Movie(7, "Форсаж 7", "Боевик")
-    };
+@NoArgsConstructor
+@AllArgsConstructor
+public class AfishaManager {
+    private AfishaRepository afishaRepository = new AfishaRepository();
+    private int itemsToReturn = 10;
 
-    public void add(Movie item) {
-        int length = movies.length + 1;
-        Movie[] tmp = new Movie[length];
-        System.arraycopy(movies, 0, tmp, 0, movies.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        movies = tmp;
+    public AfishaManager(AfishaRepository afishaRepository) {
+        this.afishaRepository = afishaRepository;
+    }
+
+    public void add(Movie movie) {
+        afishaRepository.save(movie);
     }
 
     public Movie[] flipList() {
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = movies.length - i - 1;
@@ -32,6 +30,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie(int howManyFilmToShow) {
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
@@ -51,6 +50,7 @@ public class MovieManager {
     }
 
     public Movie[] showMovie() {
+        Movie[] movies = afishaRepository.findAll();
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
@@ -60,5 +60,9 @@ public class MovieManager {
         Movie[] tmp = new Movie[maxLenght];
         System.arraycopy(result, 0, tmp, 0, tmp.length);
         return tmp;
+    }
+
+    public void removeById (int id){
+        afishaRepository.removeById(id);
     }
 }
