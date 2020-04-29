@@ -15,9 +15,9 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MovieManagerTestWithMockito {
     @Mock
-    private MovieRepository movieRepository = new MovieRepository();
+    private MovieRepository movieRepository;
     @InjectMocks
-    private MovieManager movieManager = new MovieManager(movieRepository);
+    private MovieManager movieManager;
     private Movie movie1 = new Movie(1, "Форсаж 1", "Боевик");
     private Movie movie2 = new Movie(2, "Форсаж 2", "Боевик");
     private Movie movie3 = new Movie(3, "Форсаж 3", "Боевик");
@@ -50,15 +50,18 @@ class MovieManagerTestWithMockito {
 
     @Test
     public void removeById() {
-        int idToRemove = 1;
-        Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4, movie5, movie6, movie7};
+        int idToRemove = 2;
+        Movie[] returned = new Movie[]{movie1, movie3, movie4, movie5, movie6, movie7};
         doReturn(returned).when(movieRepository).findAll();
 
         movieManager.removeById(idToRemove);
         Movie[] actual = movieManager.flipList();
-        Movie[] expected = new Movie[]{movie7, movie6, movie5, movie4, movie3, movie2, movie1};
+        Movie[] expected = new Movie[]{movie7, movie6, movie5, movie4, movie3, movie1};
 
 
         assertArrayEquals(expected, actual);
+
+        verify(movieRepository).removeById(idToRemove);
     }
+
 }
