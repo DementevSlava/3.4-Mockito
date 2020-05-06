@@ -35,29 +35,16 @@ public class MovieManager {
         Movie[] result = flipList();
         int movieLenght = movies.length;
         int maxLenght = 10;
+        if (howManyFilmToShow > maxLenght || howManyFilmToShow <= 0) {
+            howManyFilmToShow = maxLenght;
+        }
         if (movieLenght < maxLenght) {
             maxLenght = movieLenght;
-        }
-        if (howManyFilmToShow > maxLenght) {
-            movieLenght = maxLenght;
         }
         if (howManyFilmToShow <= maxLenght) {
             movieLenght = howManyFilmToShow;
         }
-            Movie[] tmp = new Movie[movieLenght];
-            System.arraycopy(result, 0, tmp, 0, tmp.length);
-            return tmp;
-
-    }
-
-    public Movie[] showMovie() {
-        Movie[] result = flipList();
-        int movieLenght = movies.length;
-        int maxLenght = 10;
-        if (movieLenght < maxLenght) {
-            maxLenght = movieLenght;
-        }
-        Movie[] tmp = new Movie[maxLenght];
+        Movie[] tmp = new Movie[movieLenght];
         System.arraycopy(result, 0, tmp, 0, tmp.length);
         return tmp;
     }
