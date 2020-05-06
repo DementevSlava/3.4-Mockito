@@ -82,6 +82,11 @@ class AfishaRepositoryTest {
     }
 
     @Test
+    void removeByNonId() {
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> afishaRepository.removeById(30));
+    }
+
+    @Test
     void findById() {
         afishaRepository.save(movieToAdd);
         Movie actual = afishaRepository.findById(6);
@@ -93,7 +98,7 @@ class AfishaRepositoryTest {
     void findByNonId() {
         afishaRepository.save(movieToAdd);
         Movie actual = afishaRepository.findById(100);
-        assertEquals(null, actual);
+        assertNull(actual);
     }
 
     @Test

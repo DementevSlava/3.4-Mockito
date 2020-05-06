@@ -1,15 +1,11 @@
 package ru.netology.manager;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
 import ru.netology.repository.AfishaRepository;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class AfishaManager {
-    private AfishaRepository afishaRepository = new AfishaRepository();
-    private int itemsToReturn = 10;
+    private AfishaRepository afishaRepository;
 
     public AfishaManager(AfishaRepository afishaRepository) {
         this.afishaRepository = afishaRepository;
